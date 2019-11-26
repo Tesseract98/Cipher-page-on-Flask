@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Authorization</title>
+    <title>Users</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
@@ -12,26 +12,28 @@
         body{
             background-color: lightblue;
         }
-        form{
-            margin: 15% 25% 10% 25%;
+        table{
+            margin: 10px 10px 10px 0px;
         }
     </style>
 <!--    <link rel="stylesheet" href="C:\Users\user\PycharmProjects\CipherOnFlask\view\style.css">-->
 </head>
 <body>
 
-<form action="/main" method="GET">
-    <div class="form-group">
-        <label for="name">User Name</label>
-        <input type="text" class="form-control" id="name" placeholder="User">
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Password">
-    </div>
-    <button type="submit" class="btn btn-default">Log In</button>
-    <button type="reset" class="btn btn-default">Reset</button>
-</form>
+<table class="table">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>date</th>
+    </tr>
+    {% for i in user %}
+    <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.user}}</td>
+        <td>{{i.created_on}}</td>
+    </tr>
+    {% endfor %}
+</table>
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>

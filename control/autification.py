@@ -5,8 +5,10 @@ from datetime import datetime
 from wtforms_alchemy import ModelForm
 from wtforms import StringField, validators
 from flask_login import LoginManager, UserMixin, login_required, current_user
+from control.MainPage import main_page_api
 
 app = Flask(__name__, template_folder='C:/Users/user/PycharmProjects/CipherOnFlask/view')
+app.register_blueprint(main_page_api)
 app.config.update(
     DEBUG=True,
     SECRET_KEY='!Very long key!',
@@ -49,6 +51,14 @@ class UsersForm(ModelForm):
     ])
 
 
+@app.route('/users', methods=['GET'])
+def user_db():
+    if request.method == 'GET':
+        # all_db_writes = Users.query.with_entities(Users.id, Users.user, Users.created_on)
+        all_db_writes = Users.query.all()
+        return render_template('TableOfUsers.html', user=all_db_writes)
+
+
 @app.route('/', methods=['GET', 'POST'])
 def log_in():
     if request.method == 'GET':
@@ -58,7 +68,7 @@ def log_in():
 
 
 if __name__ == '__main__':
-    # db.drop_all()
+    db.drop_all()
     db.create_all()
     u_admin = Users(user='admin', password=generate_password_hash('admin'))
     db.session.add(u_admin)

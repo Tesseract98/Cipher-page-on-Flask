@@ -9,11 +9,47 @@
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
-
+    <style>
+        body{
+            background-color: lightblue;
+        }
+        form{
+            margin: 10px 15% 0% 10%;
+        }
+        .form-control{
+            padding: 5px 10px 150px 10px;
+            resize: none;
+            background-color: #98FB98;
+        }
+        .button_position{
+            float: right;
+            margin: 0px 5px 5px 0px;
+        }
+    </style>
 </head>
 <body>
 
-
+<form action="/main" method="POST">
+    <div class="button_position">
+        <button class="btn btn-default" type="submit">Cipher</button>
+        <button class="btn btn-default" type="reset">Reset</button>
+    </div>
+    <div class="form-group">
+        <label for="StartText">Enter start text</label>
+        <textarea id="StartText" class="form-control" rows="3"></textarea>
+    </div>
+</form>
+<hr>
+<form action="/main" method="POST">
+    <div class="button_position">
+        <button class="btn btn-default" type="submit">Decipher</button>
+        <button class="btn btn-default" type="reset">Reset</button>
+    </div>
+    <div class="form-group">
+        <label for="CipherTxt">Enter cipher text</label>
+        <textarea id = "CipherTxt" class="form-control" rows="3"></textarea>
+    </div>
+</form>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 </body>
