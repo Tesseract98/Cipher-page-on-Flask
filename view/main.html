@@ -30,26 +30,28 @@
 <body>
 
 <form action="/main" method="POST">
+    <br>
     <div class="button_position">
-        <button class="btn btn-default" type="submit">Cipher</button>
+        <button class="btn btn-default" type="submit" name="btn_click" value="1">Cipher</button>
         <button class="btn btn-default" type="reset">Reset</button>
+        <button class="btn btn-default" type="submit" name="btn_clear" value="1">Clear</button>
     </div>
     <div class="form-group">
         <label for="StartText">Enter start text</label>
-        <textarea id="StartText" class="form-control" rows="3"></textarea>
+        <textarea id="StartText" class="form-control" rows="3" name="decipher_text">{{decipher_text}}</textarea>
     </div>
-</form>
-<hr>
-<form action="/main" method="POST">
+    <hr>
     <div class="button_position">
-        <button class="btn btn-default" type="submit">Decipher</button>
+        <button class="btn btn-default" type="submit" name="btn_click" value="2">Decipher</button>
         <button class="btn btn-default" type="reset">Reset</button>
+        <button class="btn btn-default" type="submit" name="btn_clear" value="2">Clear</button>
     </div>
     <div class="form-group">
         <label for="CipherTxt">Enter cipher text</label>
-        <textarea id = "CipherTxt" class="form-control" rows="3"></textarea>
+        <textarea id = "CipherTxt" class="form-control" rows="3" name="cipher_text">{{cipher_text}}</textarea>
     </div>
 </form>
+
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 </body>

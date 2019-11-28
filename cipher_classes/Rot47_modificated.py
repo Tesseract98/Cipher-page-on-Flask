@@ -16,30 +16,13 @@ class RotModificated:
         self.__CRYPT_NUM = crypt_num
 
     def encrypt(self, str_text: str):
+        iterator = 31
         encrypt_txt = ""
         shift_symb_dynamically = 2
-        iterator = 31
-        flg = True
-        chk_crypt_num = True
-        rnd = 1
-        if self.__CRYPT_NUM == 0:
-            chk_crypt_num = False
-        else:
-            rnd = Random(self.__CRYPT_NUM)
+        crypt_word_len = len(self.__CRYPT_WORD)
         shift_n = 1
         for i in str_text:
-            if chk_crypt_num:
-                shift_n += rnd.randint(1, 9)
-            if shift_n >= 32:
-                if iterator <= 0:
-                    flg = False
-                elif iterator >= 31:
-                    flg = True
-                shift_n -= iterator
-                if flg:
-                    iterator -= 2
-                else:
-                    iterator += 3
+            shift_n, iterator = self.__shift_count(shift_n, crypt_word_len, iterator)
             if 1040 <= ord(i) <= 1103 or i == 'ё' or i == 'Ё':
                 shift_n %= 66
                 encrypt_txt += self.__CHANGE_RUS_LETTERS[(self.__RUSS_ALPH.index(i) + shift_n) % 66]
@@ -55,30 +38,13 @@ class RotModificated:
         return encrypt_txt
 
     def decipher(self, str_text: str):
+        iterator = 31
         decrypt = ""
         shift_symb_dynamically = 2
-        iterator = 31
-        flg = True
-        chk_crypt_num = True
-        rnd = 1
-        if self.__CRYPT_NUM == 0:
-            chk_crypt_num = False
-        else:
-            rnd = Random(self.__CRYPT_NUM)
         shift_n = 1
+        crypt_word_len = len(self.__CRYPT_WORD)
         for i in str_text:
-            if chk_crypt_num:
-                shift_n += rnd.randint(1, 9)
-            if shift_n >= 32:
-                if iterator <= 0:
-                    flg = False
-                elif iterator >= 31:
-                    flg = True
-                shift_n -= iterator
-                if flg:
-                    iterator -= 2
-                else:
-                    iterator += 3
+            shift_n, iterator = self.__shift_count(shift_n, crypt_word_len, iterator)
             if i in self.__CHANGE_RUS_LETTERS:
                 shift_n %= 66
                 temp = self.__CHANGE_RUS_LETTERS.index(i)
@@ -104,3 +70,29 @@ class RotModificated:
                 shift_n -= shift_symb_dynamically
             shift_n += shift_symb_dynamically
         return decrypt
+
+    def __shift_count(self, shift_n: int, crypt_word_len: int, iterator: int):
+        flg = True
+        if self.__CRYPT_NUM != 0:
+            rnd = Random(self.__CRYPT_NUM)
+            shift_n += rnd.randint(1, 9)
+        if crypt_word_len != 0:
+            shift_n += ord(self.__CRYPT_WORD[iterator % crypt_word_len]) % 33
+        if shift_n > 55:
+            if iterator <= 0:
+                flg = False
+            elif iterator > 41:
+                flg = True
+            shift_n -= iterator
+            if flg:
+                iterator -= 2
+            else:
+                iterator += 3
+        return shift_n, iterator
+
+
+# if __name__ == '__main__':
+#     cipher = RotModificated('привет', 10)
+#     str1 = cipher.encrypt('Привет мир Hello world 123 !@#$%^&*()_')
+#     print(str1)
+#     print(cipher.decipher(str1))
