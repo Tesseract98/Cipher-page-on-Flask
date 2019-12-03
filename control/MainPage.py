@@ -1,11 +1,12 @@
 from cipher_classes.Rot47_modificated import RotModificated
 from flask import Blueprint, request, render_template, abort
+from flask_login import login_required
 
 main_page_api = Blueprint('main_page_api', __name__)
 
 
 @main_page_api.route('/main', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def home():
     if request.method == 'GET':
         return render_template('main.html', cipher_text="", decipher_text="")
