@@ -1,5 +1,5 @@
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from wtforms_alchemy import ModelForm
@@ -8,6 +8,7 @@ from flask_login import LoginManager, UserMixin, login_required, current_user, l
 from control.MainPage import main_page_api
 from flask_admin import Admin, AdminIndexView, expose, helpers
 from flask_admin.contrib.sqla import ModelView
+
 
 app = Flask(__name__, template_folder='C:/Users/user/PycharmProjects/CipherOnFlask/view')
 app.register_blueprint(main_page_api)
@@ -21,7 +22,6 @@ app.config.update(
 )
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
-# login_manager.login_view = '.home'
 admin = Admin(app, name='cipher', template_mode='bootstrap3')
 
 
@@ -55,7 +55,12 @@ class UsersForm(ModelForm):
         model = Users
 
     user = StringField(validators=[
+        validators.DataRequired(),
         validators.length(max=50)
+    ])
+    password = StringField(validators=[
+        validators.DataRequired(),
+        validators.length(max=15)
     ])
 
 
@@ -72,7 +77,14 @@ def log_in():
     if request.method == 'GET':
         return render_template('authorization.html')
     if request.method == 'POST':
-        pass
+        user_form = UsersForm(request.form)
+        if user_form.validate():
+            db_write = Users(**user_form.data)
+            db.session.add(db_write)
+            db.session.commit()
+            flash('Logged in successfully.')
+            login_user(db_write)
+        return redirect(url_for('main_page_api.home'))
 
 
 if __name__ == '__main__':
