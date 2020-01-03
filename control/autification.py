@@ -5,12 +5,12 @@ from datetime import datetime
 from wtforms_alchemy import ModelForm
 from wtforms import StringField, validators
 from flask_login import LoginManager, UserMixin, login_required, current_user, login_user, logout_user
-from control.MainPage import main_page_api
+from MainPage import main_page_api
 from flask_admin import Admin, AdminIndexView, expose, helpers
 from flask_admin.contrib.sqla import ModelView
 
 
-app = Flask(__name__, template_folder='C:/Users/user/PycharmProjects/CipherOnFlask/view')
+app = Flask(__name__, template_folder='C:/Users/user/Documents/Python_projects/Cipher-page-on-Flask/view')
 app.register_blueprint(main_page_api)
 app.config.update(
     DEBUG=True,
@@ -92,5 +92,5 @@ if __name__ == '__main__':
     # db.create_all()
     # u_admin = Users(user='admin', password=generate_password_hash('admin'))
     # db.session.add(u_admin)
-    db.session.commit()
+    # db.session.commit()
     app.run(host='localhost', port=5000)

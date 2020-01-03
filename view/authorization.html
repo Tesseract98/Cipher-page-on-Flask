@@ -1,25 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Authorization</title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+{% extends 'wrapper.html'%}
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+{% block title %}
+authorization
+{% endblock %}
+
+{% block style %}
     <style>
         body{
             background-color: lightblue;
         }
         form{
-            margin: 15% 25% 15% 25%;
+            margin: 13% 25% 15% 25%;
         }
+		.buttons_in{
+			padding: 0% 20px 0% 50px;
+		}
+		#secondBTN{
+			margin-left: 20px; 
+		}
     </style>
-<!--    <link rel="stylesheet" href="C:\Users\user\PycharmProjects\CipherOnFlask\view\style.css">-->
-</head>
-<body>
+    <!--    <link rel="stylesheet" href="style.css">-->
+{% endblock %}
 
+{% block content %}
 <form action="/" method="POST">
     <div class="form-group">
         <label for="user">User Name</label>
@@ -29,11 +32,9 @@
         <label for="password">Password</label>
         <input type="password" class="form-control" id="password" name="password" placeholder="Password">
     </div>
-    <button type="submit" class="btn btn-default">Log In</button>
-    <button type="reset" class="btn btn-default">Reset</button>
+    <div class="buttons_in">
+	    <button type="submit" class="btn btn-outline-success">Log In</button>
+    	<button type="reset" class="btn btn-outline-secondary" id="secondBTN">Reset</button>
+    </div>
 </form>
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-</body>
-</html>
+{% endblock %}
