@@ -1,41 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Users</title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+{% extends 'wrapper.html'%}
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+{% block title %}
+data base
+{% endblock %}
+
+{% block style %}
     <style>
-        body{
-            background-color: lightblue;
-        }
-        table{
-            margin: 10px 10px 10px 0px;
+        .table{
+            margin-top: 1%;
+            margin-bottom: 5%;
         }
     </style>
-<!--    <link rel="stylesheet" href="C:\Users\user\PycharmProjects\CipherOnFlask\view\style.css">-->
-</head>
-<body>
+{% endblock %}
 
+{% block content %}
 <table class="table">
     <tr>
         <th>id</th>
         <th>name</th>
+        <th>hash password</th>
         <th>date</th>
     </tr>
     {% for i in user %}
     <tr>
         <td>{{i.id}}</td>
-        <td>{{i.user}}</td>
+        <td>{{i.login}}</td>
+        <td>{{i.password}}</td>
         <td>{{i.created_on}}</td>
     </tr>
     {% endfor %}
 </table>
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-</body>
-</html>
+{% endblock %}

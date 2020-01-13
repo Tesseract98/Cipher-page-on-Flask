@@ -16,35 +16,31 @@ authorization
         }
         @media only screen and (min-device-width : 480px) and (max-device-width : 860px){
             form{
-                margin: 25% 25% 70px 25%;
+                margin: 19% 25% 70px 25%;
             }
         }
         @media only screen and (min-device-width : 860px) and (max-device-width : 1800px){
             form{
-                margin: 13% 25% 70px 25%;
+                margin: 7% 25% 70px 25%;
             }
         }
         @media only screen and (min-device-width : 1800px){
             form{
-                margin: 9% 25% 70px 25%;
+                margin: 3% 25% 70px 25%;
             }
         }
 		.buttons_in{
-			padding: 0% 0% 0% 15%;
-
+			padding: 0% 8% 0% 25%;
 		}
 		#secondBTN{
-			margin-left: 25px;
-		}
-		#Registration{
-			margin-left: 25px;
+			margin-left: 50px;
 		}
     </style>
     <!--    <link rel="stylesheet" href="style.css">-->
 {% endblock %}
 
 {% block content %}
-<form action="/{{ link }}" method="POST">
+<form action="/register" method="POST">
     <div class="form-group">
         <label for="login">User Name</label>
         <input type="text" class="form-control" id="login" name="login" placeholder="Login">
@@ -60,12 +56,13 @@ authorization
         <label for="password">Password</label>
         <input type="password" class="form-control" id="password" name="password" placeholder="Password">
     </div>
+    <div class="form-group">
+        <label for="chk_password">Password again</label>
+        <input type="password" class="form-control" id="chk_password" name="chk_password" placeholder="Check password">
+    </div>
     <div class="buttons_in">
-	    <button type="submit" class="btn btn-outline-success">Log In</button>
+	    <button type="submit" class="btn btn-outline-success">Sign In</button>
     	<button type="reset" class="btn btn-outline-secondary" id="secondBTN">Reset</button>
-        {% if btn_reg %}
-        <button type="button" class="btn btn-outline-info" id="Registration"><a href="/register">Registration</a></button>
-        {% endif %}
     </div>
 </form>
 {% endblock %}

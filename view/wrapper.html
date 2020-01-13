@@ -31,10 +31,10 @@ footer{
     background-color: darkblue;
     padding-top:  10px;
     padding-bottom:  10px;
-    border-top: 3px solid black;
+    border-top: 2px solid black;
     color: white;
-     position:fixed;
-     bottom:0;
+    position:fixed;
+    bottom:0;
 }
 </style>
 
@@ -57,6 +57,11 @@ footer{
                 <li class="nav-item">
                     <a href="/main" class="nav-link">Cipher</a>
                 </li>
+                {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="/logout" class="nav-link">Logout</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </div>
@@ -66,7 +71,7 @@ footer{
 {% block content %}
 {% endblock %}
 
-<footer class="container-fluid">
+<footer class="container-fluid" id="foot">
 <div class="container">
     <div class="row padding text-center">
         <div class="col-12">
