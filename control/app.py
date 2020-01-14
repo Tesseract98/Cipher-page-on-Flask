@@ -101,7 +101,7 @@ class UsersForm(ModelForm):
 
 
 @app.route('/', methods=['GET', 'POST'])
-def log_in():
+def login_func():
     if request.method == 'GET':
         return render_template('authorization.html', btn_reg=True, form="")
     if request.method == 'POST':
@@ -114,7 +114,7 @@ def log_in():
 @app.route('/logout/')
 def logout_func():
     logout_user()
-    return redirect(url_for('log_in'))
+    return redirect(url_for('login_func'))
 
 
 def chk_pass(form_out, field):

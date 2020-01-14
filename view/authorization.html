@@ -1,14 +1,30 @@
 {% extends 'wrapper.html'%}
 
 {% block title %}
+
+{% if btn_reg %}
 authorization
+{% else %}
+superuser authentication
+{% endif %}
+
 {% endblock %}
 
 {% block style %}
     <style>
-        body{
-            background-color: lightblue;
-        }
+        {% if btn_reg %}
+            body{
+                background-color: LightBlue;
+            }
+        {% else %}
+            body{
+                background-color: MidnightBlue;
+            }
+            label{
+                color: white;
+            }
+        {% endif %}
+
         @media only screen and (min-device-width : 300px) and (max-device-width : 480px){
             form{
                 margin: 50% 25% 70px 25%;
@@ -63,8 +79,9 @@ authorization
     <div class="buttons_in">
 	    <button type="submit" class="btn btn-outline-success">Log In</button>
     	<button type="reset" class="btn btn-outline-secondary" id="secondBTN">Reset</button>
-        {% if btn_reg %}
-        <button type="button" class="btn btn-outline-info" id="Registration"><a href="/register">Registration</a></button>
+        {% if btn_reg and not current_user.is_authenticated%}
+<!--        <button type="button" class="btn btn-outline-info" id="Registration"><a href="/register">Registration</a></button>-->
+        <button type="button" class="btn btn-outline-info" onClick="location.href='/register'" id="Registration">Registration</button>
         {% endif %}
     </div>
 </form>
